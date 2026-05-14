@@ -66,12 +66,17 @@ const app = new Vue({
             owner.push(item);
         },
         sendToServer(content) {
-            this.websocket.send(JSON.stringify(
-                {
-                    from: this.username,
-                    content: content,
-                }
-            ));
+            let payload = {
+                id:new Date().toISOString().replace(/:/g, '-'),
+                from:this.username,
+                content:content
+            }
+
+            //log
+            axios.post('/api/tableStorage?tableName=Akashic&partitionKey=log', payload);
+            
+            //share
+            this.websocket.send(JSON.stringify(payload));
         },
         addMessageToView(message) {
             this.addItem(JSON.parse(message), this.chat.messages);
@@ -87,9 +92,6 @@ const app = new Vue({
     }
 });
 
-function fooTest(o){
-  console.log(o);
+function logMessage(){
 
-  axios.post(`${app.endpoint}api/ai/foo=${o}`,null,null)
-  .then(resp=>console.log(resp));
 }

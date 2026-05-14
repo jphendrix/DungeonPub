@@ -35,6 +35,7 @@ const app = new Vue({
                         this.connected = true;
                         console.log(websocket.protocol);
                         this.log("Client websocket opened.");
+                        this.sendToServer(`${this.username} is awake`);
                     }
                     websocket.onclose = e => {
                         this.connected = false;
@@ -73,7 +74,7 @@ const app = new Vue({
             }
 
             //log
-            axios.post('/api/tableStorage?tableName=Akashic&partitionKey=log', payload);
+            axios.post(`${this.endpoint}/api/tableStorage?tableName=Akashic&partitionKey=log`, payload);
             
             //share
             this.websocket.send(JSON.stringify(payload));
@@ -91,7 +92,3 @@ const app = new Vue({
         }
     }
 });
-
-function logMessage(){
-
-}

@@ -25,9 +25,11 @@ const app = new Vue({
 
                 axios.get("/api/tableStorage?tableName=Akashic&partitionKey=log")
                 .then(resp => {
-                    $.each(resp.data.reverse(),function(i,e){
-                        app.addMessageToView(JSON.stringify(e))
-                    });
+                    resp.data
+                        .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
+                        .forEach(e => {
+                            app.addMessageToView(JSON.stringify(e));
+                        });
                 });
 
                 axios.post(`${this.endpoint}api/login?userid=${this.username}`, null, null)

@@ -22,8 +22,14 @@ const app = new Vue({
                 this.loggedin = true;
 
                 this.log("Connecting...");
-                // id in query map to the name in function, use like {query.userid}
-                
+
+                axios.get("/api/tableStorage?tableName=Akashic&partitionKey=log")
+                .then(resp => {
+                    $.each(resp.data,function(i,e){
+                        app.addMessageToView(JSON.stringify(e))
+                    });
+                });
+
                 axios.post(`${this.endpoint}api/login?userid=${this.username}`, null, null)
                 .then(resp => resp.data)
                 .then(info => {

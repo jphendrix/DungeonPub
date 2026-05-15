@@ -57,11 +57,12 @@
                             </div>
                             <div v-else-if="message.type == 'self' || message.from == username"
                                 class="alert alert-success float-right" role="text">
+                                <small class="text-muted d-block">{{ message.id }}</small>
                                 {{message.content}}
                             </div>
                             <div v-else class="float-left" role="text">
-                                <small class="text-muted font-weight-light">From <a
-                                        href="#">{{message.from}}</a></small>
+                                <small class="text-muted font-weight-light">From <ahref="#">{{message.from}}</a>
+                                <span class="ms-2">{{ message.id }}</span></small>
                                 <p class="alert alert-primary text-break ">{{message.content}}</p>
                             </div>
                         </div>

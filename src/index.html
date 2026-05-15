@@ -61,8 +61,10 @@
                                 {{message.content}}
                             </div>
                             <div v-else class="float-left" role="text">
-                                <small class="text-muted font-weight-light">From <ahref="#">{{message.from}}</a>
-                                <span class="ms-2">{{ message.id }}</span></small>
+                                <small class="text-muted font-weight-light">
+                                    From <a href="#">{{message.from}}</a>
+                                    <span class="ms-2">{{ message.id }}</span>
+                                </small>
                                 <p class="alert alert-primary text-break ">{{message.content}}</p>
                             </div>
                         </div>

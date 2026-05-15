@@ -25,7 +25,7 @@ const app = new Vue({
 
                 axios.get("/api/tableStorage?tableName=Akashic&partitionKey=log")
                 .then(resp => {
-                    $.each(resp.data,function(i,e){
+                    $.each(resp.data.reverse(),function(i,e){
                         app.addMessageToView(JSON.stringify(e))
                     });
                 });

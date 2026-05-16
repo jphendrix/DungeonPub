@@ -1,0 +1,16 @@
+ {
+    "sessionNumber": 3,
+    "title": "Fog and Broken Steel",
+    "summary": "The party arrived in Millhaven under cover of a thick autumn fog. After securing rooms at the Soggy Boot, they learned from a tight-lipped barkeep known only as The Dark that bandit activity had made Swamp Road impassable. During a tense confrontation with a pair of scouts at the edge of town, Pippen's blade shattered against a brigand's shield, leaving him weaponless. The evening ended with the party regrouping at the tavern, no closer to the road — but considerably wiser about the dangers ahead.",
+    "keyEvents": [
+      "Party arrived in Millhaven",
+      "Learned of bandit activity from The Dark",
+      "Pippen's sword broken in combat",
+      "Two bandit scouts driven off"
+    ],
+    "loose threads": [
+      "The Dark is hiding something",
+      "Who is Commander Voss working for?"
+    ],
+    "createdAt": "2026-05-16T22-03-26.712Z"
+ }

@@ -1,0 +1,26 @@
+ [
+    {
+      "id": "quest_001",
+      "title": "Clear Swamp Road",
+      "givenBy": "Village Elder",
+      "status": "active",
+      "objective": "Drive off or defeat the bandits controlling Swamp Road",
+      "reward": "200gp and a safe passage token",
+      "leads": [
+        "The Dark may know more than he's letting on",
+        "Abandoned toll booth may be a bandit waypoint"
+      ]
+    },
+    {
+      "id": "quest_002",
+      "title": "The Missing Cleric",
+      "givenBy": "Seraphina (personal quest)",
+      "status": "background",
+      "objective": "Find out what happened to Brother Aldric, last seen near the Fenlands",
+      "reward": "Personal — no gold",
+      "leads": [
+        "Brother Aldric was investigating a cult",
+        "A symbol matching his order was found near the swamp"
+      ]
+    }
+  ]

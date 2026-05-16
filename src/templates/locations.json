@@ -1,0 +1,22 @@
+[
+    {
+        "name": "The Soggy Boot Tavern",
+        "region": "Millhaven",
+        "description": "A low-ceilinged tavern smelling of peat smoke and ale. The Dark keeps a crossbow under the bar.",
+        "pointsOfInterest": [
+        "Wanted poster on the wall — Commander Voss, 50gp reward",
+        "Back room rumored to be used for smuggling"
+        ],
+        "visited": true
+    },
+    {
+        "name": "Swamp Road",
+        "region": "The Fenlands",
+        "description": "A crumbling road cutting south through the marsh. Dangerous after dark.",
+        "pointsOfInterest": [
+        "Site of The Dark's ambush",
+        "Abandoned toll booth at the crossroads"
+        ],
+        "visited": false
+    }
+]

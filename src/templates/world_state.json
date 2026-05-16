@@ -1,0 +1,17 @@
+{
+    "campaignName": "The Shadow of the Swamp",
+    "sessionNumber": 3,
+    "currentDate": {
+        "realWorld": "2026-05-16",
+        "inGame": "The 14th day of the Harvest Moon, Year 412"
+    },
+    "currentLocation": {
+        "name": "Millhaven",
+        "type": "village",
+        "region": "The Fenlands",
+        "description": "A small, fog-drenched village on the edge of Swamp Road. Known for its peat fires and suspicious locals."
+    },
+    "weather": "Heavy fog, light rain",
+    "timeOfDay": "Evening",
+    "activeThreat": "Bandit activity on Swamp Road"
+}

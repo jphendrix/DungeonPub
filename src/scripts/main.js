@@ -1,10 +1,6 @@
-function generateUser() {
-    return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-}
-
 const data = {
     websocket: null,
-    username: generateUser(), // todo: oauth
+    username: '', // todo: oauth
     endpoint: window.location.href,
     newMessage: '',
     chat: { messages: [] },

@@ -205,11 +205,34 @@
                                     v-model="campaign.campaignName" placeholder="Name of the campaign">
                             </div>
 
+                            <div class="row">
+                                <div class="col-4 mb-3">
+                                    <label class="small text-muted mb-1">In-Game Date</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.currentDate.inGame"
+                                        placeholder="In-game date">
+                                </div>
+
+                                <div class="col-4 mb-3">
+                                    <label class="small text-muted mb-1">Time of Day</label>
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.timeOfDay" placeholder="Time of day">
+                                </div>
+
+                                <div class="col-4 mb-3">
+                                    <label class="small text-muted mb-1">Session Number</label>
+                                    <input type="number"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model.number="campaign.sessionNumber"
+                                        placeholder="Session number">
+                                </div>
+                            </div>
+
                             <div class="mb-3">
-                                <label class="small text-muted mb-1">Session Number</label>
-                                <input type="number"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model.number="campaign.sessionNumber" placeholder="Session number">
+                                <label class="small text-muted mb-1">Weather</label>
+                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="campaign.weather" placeholder="Current weather">
                             </div>
 
                             <div class="mb-3">
@@ -244,36 +267,26 @@
                                     placeholder="Current objective"></textarea>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="small text-muted mb-1">Real World Date</label>
-                                <input type="datetime-local"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    :value="campaign.currentDate.realWorld ? campaign.currentDate.realWorld.substring(0,16) : ''"
-                                    @input="campaign.currentDate.realWorld = $event.target.value">
-                            </div>
+                            <div class="row">
+                                <div class="col-4 mb-3">
+                                    <label class="small text-muted mb-1">Current Location</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.currentLocation.name" placeholder="Location name">
+                                </div>
 
-                            <div class="mb-3">
-                                <label class="small text-muted mb-1">In-Game Date</label>
-                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="campaign.currentDate.inGame" placeholder="In-game date">
-                            </div>
+                                <div class="col-4 mb-3">
+                                    <label class="small text-muted mb-1">Location Type</label>
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.currentLocation.type" placeholder="Location type">
+                                </div>
 
-                            <div class="mb-3">
-                                <label class="small text-muted mb-1">Location Name</label>
-                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="campaign.currentLocation.name" placeholder="Location name">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="small text-muted mb-1">Location Type</label>
-                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="campaign.currentLocation.type" placeholder="Location type">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="small text-muted mb-1">Region</label>
-                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="campaign.currentLocation.region" placeholder="Region">
+                                <div class="col-4 mb-3">
+                                    <label class="small text-muted mb-1">Region</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.currentLocation.region" placeholder="Region">
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -281,18 +294,6 @@
                                 <textarea class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="campaign.currentLocation.description"
                                     placeholder="Describe the current location"></textarea>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="small text-muted mb-1">Weather</label>
-                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="campaign.weather" placeholder="Current weather">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="small text-muted mb-1">Time of Day</label>
-                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="campaign.timeOfDay" placeholder="Time of day">
                             </div>
 
                             <div class="mb-3">

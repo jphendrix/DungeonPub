@@ -41,7 +41,22 @@ const app = new Vue({
                     .map(x => x.trim())
                     .filter(x => x.length > 0);         
             }
+        },
+        partyInventoryCsv: {
+            get() {
+                return (this.campaign.party.groupInventory||[]).join(", ");
+            },
+
+            set(value) {
+                this.campaign.party.groupInventory = value
+                    .split(",")
+                    .map(x => x.trim())
+                    .filter(x => x.length > 0);         
+            }
         }
+    },
+    mounted() {
+        console.log("App mounted.");
     },
     created() {
         console.log("App created, loading character...");

@@ -47,8 +47,7 @@ const Campaign = {
             party:{
                 members: ["Pippen", "Gandalf"],
                 formation: "Pippen scouts ahead",
-                groupInventory: ["Rope 50ft", "Lantern", "Camp supplies"],
-                partyGold: 120,
+                groupInventory: ["Rope 50ft", "Lantern", "Camp supplies", "120gp"],
                 morale: "Shaken after Pippen's sword broke",
                 currentObjective: "Find a blacksmith before heading south"
                 },

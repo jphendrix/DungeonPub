@@ -17,6 +17,20 @@ const data = {
         hp: { current: 0, max: 0 },
         stats: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 },
         status: ''
+    },
+    computed: {
+        inventoryCsv: {
+            get() {
+                return this.character.inventory.join(", ");
+            },
+
+            set(value) {
+                this.character.inventory = value
+                    .split(",")
+                    .map(x => x.trim())
+                    .filter(x => x.length > 0);
+            }
+        }
     }
 };
 const app = new Vue({
@@ -24,7 +38,7 @@ const app = new Vue({
     data: data,
     created() {
         console.log("App created, loading character...");
-        this.character = Character.default();
+        this.character.data = Character.default();
     },    
     methods: {
         login: function () {

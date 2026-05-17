@@ -13,7 +13,7 @@ const Character = {
 
     load(endpoint, name) {
         if((name||'') != '') {
-        return axios.get(`${endpoint}api/tableStorage?tableName=Akashic&partitionKey=characters&id=${name}`)
+        return axios.get(`${endpoint}api/character/${name}`)
             .then(resp => {
                 if (resp.data && resp.data.data) {
                     return JSON.parse(resp.data.data);
@@ -26,8 +26,7 @@ const Character = {
     },
 
     save(endpoint, name, character) {
-        return axios.post(`${endpoint}api/tableStorage?tableName=Akashic&partitionKey=characters`, {
-            id: name,
+        return axios.post(`${endpoint}api/character/${name}`, {
             data:JSON.stringify(character),
         });
     }

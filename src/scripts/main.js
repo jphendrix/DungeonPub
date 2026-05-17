@@ -1,10 +1,6 @@
-function generateUser() {
-    return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-}
-
 const data = {
     websocket: null,
-    username: generateUser(), // todo: oauth
+    username: '', // todo: oauth
     endpoint: window.location.href,
     newMessage: '',
     chat: { messages: [] },
@@ -20,16 +16,42 @@ const data = {
         level: 1,
         hp: { current: 0, max: 0 },
         stats: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 },
-        status: ''
+        status: '',
+        inventory: ["Dagger", "Thieves tools", "50gp"],
+        notes: "Has a grudge against the bandit leader"
     }
 };
+
+
 const app = new Vue({
     el: '#app',
     data: data,
+    computed: {
+        inventoryCsv: {
+            get() {
+                return (this.character.inventory||[]).join(", ");
+            },
+
+            set(value) {
+                this.character.inventory = value
+                    .split(",")
+                    .map(x => x.trim())
+                    .filter(x => x.length > 0);
+            }
+        }
+    },
+    created() {
+        console.log("App created, loading character...");
+        this.character.data = Character.default();
+    },    
     methods: {
         login: function () {
             if (this.username) {
                 this.loggedin = true;
+
+                Character.load(this.endpoint, this.username)
+                    .then(c => this.character = c)
+                    .catch(err => this.log("Error loading character: " + err));
 
                 this.log("Connecting...");
 
@@ -53,7 +75,6 @@ const app = new Vue({
                         this.connected = true;
                         console.log(websocket.protocol);
                         this.log("Client websocket opened.");
-                        this.sendToServer(`${this.username} is awake`);
                     }
                     websocket.onclose = e => {
                         this.connected = false;
@@ -109,14 +130,11 @@ const app = new Vue({
             this.addItem(new Date().toLocaleString() + ": " + content, this.logs);
         },
 
-        saveCharacter: function() {
-            axios.post(`${this.endpoint}api/tableStorage?tableName=Akashic&partitionKey=characters`, {
-                id: this.username,
-                ...this.character,
-                hp: JSON.stringify(this.character.hp),
-                stats: JSON.stringify(this.character.stats)
-            }).then(() => this.log("Character saved."))
-            .catch(() => this.log("Error saving character."));
+        saveCharacter() {
+            console.log("Saving character...");
+            Character.save(this.endpoint, this.username, this.character)
+                .then(() => this.log("Character saved."))
+                .catch(() => this.log("Error saving character."));
         }
     }
 });

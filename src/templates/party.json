@@ -1,8 +1,0 @@
-{
-  "members": ["Pippen", "Seraphina"],
-  "formation": "Pippen scouts ahead",
-  "groupInventory": ["Rope 50ft", "Lantern", "Camp supplies"],
-  "partyGold": 120,
-  "morale": "Shaken after Pippen's sword broke",
-  "currentObjective": "Find a blacksmith before heading south"
-}

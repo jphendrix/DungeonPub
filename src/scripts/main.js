@@ -22,6 +22,11 @@ const data = {
 const app = new Vue({
     el: '#app',
     data: data,
+    created() {
+        Character.load(this.endpoint, this.username)
+            .then(c => this.character = c)
+            .catch(err => this.log("Error loading character: " + err));
+    },    
     methods: {
         login: function () {
             if (this.username) {
@@ -104,14 +109,10 @@ const app = new Vue({
             this.addItem(new Date().toLocaleString() + ": " + content, this.logs);
         },
 
-        saveCharacter: function() {
-            axios.post(`${this.endpoint}api/tableStorage?tableName=Akashic&partitionKey=characters`, {
-                id: this.username,
-                ...this.character,
-                hp: JSON.stringify(this.character.hp),
-                stats: JSON.stringify(this.character.stats)
-            }).then(() => this.log("Character saved."))
-            .catch(() => this.log("Error saving character."));
+        saveCharacter() {
+            Character.save(this.endpoint, this.username, this.character)
+                .then(() => this.log("Character saved."))
+                .catch(() => this.log("Error saving character."));
         }
     }
 });

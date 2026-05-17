@@ -20,13 +20,16 @@ const Character = {
     //TODO: after auth, only pull this user's character, and save to their record on the server
     load(endpoint, name) {
         if((name||'') != '') {
-        return axios.get(`${endpoint}api/character/${name}`)
-            .then(resp => {
-                if (resp.data && resp.data.data) {
-                    return JSON.parse(resp.data.data);
-                }
-                return Character.default();
-            });
+            return axios.get(`${endpoint}api/character/${name}`)
+                .then(resp => {
+                    if (resp.data && resp.data.data) {
+                        return JSON.parse(resp.data.data);
+                    }
+                    return Character.default();
+                })
+                .catch(err => {
+                    return Character.default();
+                });
         } else {
             return Promise.resolve(Character.default());
         }

@@ -16,7 +16,9 @@ const data = {
         level: 1,
         hp: { current: 0, max: 0 },
         stats: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 },
-        status: ''
+        status: '',
+        inventory: ["Dagger", "Thieves tools", "50gp"],
+        notes: "Has a grudge against the bandit leader"
     },
     computed: {
         inventoryCsv: {

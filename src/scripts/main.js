@@ -19,7 +19,13 @@ const data = {
         status: '',
         inventory: ["Dagger", "Thieves tools", "50gp"],
         notes: "Has a grudge against the bandit leader"
-    },
+    }
+};
+
+
+const app = new Vue({
+    el: '#app',
+    data: data,
     computed: {
         inventoryCsv: {
             get() {
@@ -33,11 +39,7 @@ const data = {
                     .filter(x => x.length > 0);
             }
         }
-    }
-};
-const app = new Vue({
-    el: '#app',
-    data: data,
+    },
     created() {
         console.log("App created, loading character...");
         this.character.data = Character.default();

@@ -91,91 +91,110 @@
 
                 <!-- RIGHT: Character Sheet Panel -->
                 <aside class="col-4 d-flex flex-column p-3 overflow-auto overflow-auto border-left bg-dark text-light">
-                    <h5 class="border-bottom pb-2">⚔️ Character Sheet</h5>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#home">{{character.name}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+                        </li>
+                    </ul>
 
-                    <!-- Basic Info -->
-                    <div class="mb-3">
-                        <div class="form-group mb-1">
-                            <label class="small text-muted mb-0">Name</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                v-model="character.name" placeholder="Character name">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col mb-1">
-                                <label class="small text-muted mb-0">Class</label>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane container active" id="home">
+                            <h5 class="border-bottom pb-2">⚔️ Character Sheet</h5>
+                            <!-- Basic Info -->
+                            <div class="mb-3">
+                                
+                                <div class="form-group mb-1">
+                                    <label class="small text-muted mb-0">Name</label>
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="character.name" placeholder="Character name">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col mb-1">
+                                        <label class="small text-muted mb-0">Class</label>
+                                        <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model="character.class" placeholder="Class">
+                                    </div>
+                                    <div class="form-group col mb-1">
+                                        <label class="small text-muted mb-0">Race</label>
+                                        <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model="character.race" placeholder="Race">
+                                    </div>
+                                    <div class="form-group col mb-1">
+                                        <label class="small text-muted mb-0">Level</label>
+                                        <input type="number"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model.number="character.level" min="1" max="20">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- HP -->
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Hit Points</label>
+                                <div class="form-row align-items-center">
+                                    <div class="col">
+                                        <input type="number"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model.number="character.hp.current" placeholder="Current">
+                                    </div>
+                                    <div class="col-auto">/</div>
+                                    <div class="col">
+                                        <input type="number"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model.number="character.hp.max" placeholder="Max">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ability Scores -->
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Ability Scores</label>
+                                <div class="form-row">
+                                    <div class="col-4 mb-1" v-for="(val, stat) in character.stats" :key="stat">
+                                        <label class="small text-muted mb-0 text-uppercase">{{stat}}</label>
+                                        <input type="number"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model.number="character.stats[stat]" min="1" max="20">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Status</label>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="character.class" placeholder="Class">
+                                    v-model="character.status" placeholder="e.g. Poisoned, Unconscious">
                             </div>
-                            <div class="form-group col mb-1">
-                                <label class="small text-muted mb-0">Race</label>
-                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="character.race" placeholder="Race">
+
+                            <!-- Inventory -->
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Inventory</label>
+                                <textarea class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="inventoryCsv" placeholder="List of items the character is carrying"></textarea>
                             </div>
-                            <div class="form-group col mb-1">
-                                <label class="small text-muted mb-0">Level</label>
-                                <input type="number"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model.number="character.level" min="1" max="20">
+
+                            <!-- Notes -->
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Notes</label>
+                                <textarea class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="character.notes" placeholder="Additional information about the character"></textarea>
                             </div>
+
+                            <!-- Save Button -->
+                            <button class="btn btn-sm btn-outline-light mt-auto" @click="saveCharacter">
+                                Save Character
+                            </button>
                         </div>
+                        <div class="tab-pane container fade" id="menu1">1</div>
+                        <div class="tab-pane container fade" id="menu2">2</div>
                     </div>
-
-                    <!-- HP -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Hit Points</label>
-                        <div class="form-row align-items-center">
-                            <div class="col">
-                                <input type="number"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model.number="character.hp.current" placeholder="Current">
-                            </div>
-                            <div class="col-auto">/</div>
-                            <div class="col">
-                                <input type="number"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model.number="character.hp.max" placeholder="Max">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ability Scores -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Ability Scores</label>
-                        <div class="form-row">
-                            <div class="col-4 mb-1" v-for="(val, stat) in character.stats" :key="stat">
-                                <label class="small text-muted mb-0 text-uppercase">{{stat}}</label>
-                                <input type="number"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model.number="character.stats[stat]" min="1" max="20">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Status -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Status</label>
-                        <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                            v-model="character.status" placeholder="e.g. Poisoned, Unconscious">
-                    </div>
-
-                    <!-- Inventory -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Inventory</label>
-                        <textarea class="form-control form-control-sm bg-secondary text-light border-0"
-                            v-model="inventoryCsv" placeholder="List of items the character is carrying"></textarea>
-                    </div>
-
-                    <!-- Notes -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Notes</label>
-                        <textarea class="form-control form-control-sm bg-secondary text-light border-0"
-                            v-model="character.notes" placeholder="Additional information about the character"></textarea>
-                    </div>
-
-                    <!-- Save Button -->
-                    <button class="btn btn-sm btn-outline-light mt-auto" @click="saveCharacter">
-                        Save Character
-                    </button>
                 </aside>
             </div>
         </template>

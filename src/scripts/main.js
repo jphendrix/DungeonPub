@@ -24,14 +24,16 @@ const app = new Vue({
     data: data,
     created() {
         console.log("App created, loading character...");
-        Character.load(this.endpoint, this.username)
-            .then(c => this.character = c)
-            .catch(err => this.log("Error loading character: " + err));
+        this.character = Character.default();
     },    
     methods: {
         login: function () {
             if (this.username) {
                 this.loggedin = true;
+
+                Character.load(this.endpoint, this.username)
+                    .then(c => this.character = c)
+                    .catch(err => this.log("Error loading character: " + err));
 
                 this.log("Connecting...");
 

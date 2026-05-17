@@ -12,13 +12,17 @@ const Character = {
     },
 
     load(endpoint, name) {
+        if((name||'') != '') {
         return axios.get(`${endpoint}api/tableStorage?tableName=Akashic&partitionKey=characters&id=${name}`)
             .then(resp => {
-                if (resp.data.length > 0 && resp.data[0].data) {
-                    return JSON.parse(resp.data[0].data);
+                if (resp.data.length > 0 && resp.data.data) {
+                    return JSON.parse(resp.data.data);
                 }
                 return Character.default();
             });
+        } else {
+            return Promise.resolve(Character.default());
+        }
     },
 
     save(endpoint, name, character) {

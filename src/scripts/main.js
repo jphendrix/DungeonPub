@@ -53,7 +53,6 @@ const app = new Vue({
                         this.connected = true;
                         console.log(websocket.protocol);
                         this.log("Client websocket opened.");
-                        this.sendToServer(`${this.username} is awake`);
                     }
                     websocket.onclose = e => {
                         this.connected = false;

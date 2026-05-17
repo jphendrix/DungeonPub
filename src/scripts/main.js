@@ -23,6 +23,7 @@ const app = new Vue({
     el: '#app',
     data: data,
     created() {
+        console.log("App created, loading character...");
         Character.load(this.endpoint, this.username)
             .then(c => this.character = c)
             .catch(err => this.log("Error loading character: " + err));
@@ -110,6 +111,7 @@ const app = new Vue({
         },
 
         saveCharacter() {
+            console.log("Saving character...");
             Character.save(this.endpoint, this.username, this.character)
                 .then(() => this.log("Character saved."))
                 .catch(() => this.log("Error saving character."));

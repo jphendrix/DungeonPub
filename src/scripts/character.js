@@ -15,7 +15,7 @@ const Character = {
         if((name||'') != '') {
         return axios.get(`${endpoint}api/tableStorage?tableName=Akashic&partitionKey=characters&id=${name}`)
             .then(resp => {
-                if (resp.data > 0 && resp.data.data) {
+                if (resp.data && resp.data.data) {
                     return JSON.parse(resp.data.data);
                 }
                 return Character.default();

@@ -29,7 +29,7 @@ const app = new Vue({
     computed: {
         inventoryCsv: {
             get() {
-                return this.character.inventory.join(", ");
+                return (this.character.inventory||[]).join(", ");
             },
 
             set(value) {

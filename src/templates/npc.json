@@ -1,0 +1,11 @@
+{
+    "name": "Commander Voss",
+    "role": "Bandit Leader",
+    "disposition": "Hostile",
+    "knownFacts": [
+        "Controls Swamp Road south of Millhaven",
+        "Has a camp somewhere in the fenlands"
+    ],
+    "secrets": "Working for a larger organization",
+    "lastSeen": "Not yet encountered directly"
+}

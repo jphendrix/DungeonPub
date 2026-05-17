@@ -11,7 +11,17 @@ const data = {
     logs: [],
     loggedin: false,
     connected: false,
-    counter: 0
+    counter: 0,
+
+    character: {
+        name: '',
+        race: '',
+        class: '',
+        level: 1,
+        hp: { current: 0, max: 0 },
+        stats: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 },
+        status: ''
+    }
 };
 const app = new Vue({
     el: '#app',
@@ -22,8 +32,16 @@ const app = new Vue({
                 this.loggedin = true;
 
                 this.log("Connecting...");
-                // id in query map to the name in function, use like {query.userid}
-                
+
+                axios.get("/api/tableStorage?tableName=Akashic&partitionKey=log")
+                .then(resp => {
+                    resp.data
+                        .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
+                        .forEach(e => {
+                            app.addMessageToView(JSON.stringify(e));
+                        });
+                });
+
                 axios.post(`${this.endpoint}api/login?userid=${this.username}`, null, null)
                 .then(resp => resp.data)
                 .then(info => {
@@ -35,6 +53,7 @@ const app = new Vue({
                         this.connected = true;
                         console.log(websocket.protocol);
                         this.log("Client websocket opened.");
+                        this.sendToServer(`${this.username} is awake`);
                     }
                     websocket.onclose = e => {
                         this.connected = false;
@@ -66,12 +85,17 @@ const app = new Vue({
             owner.push(item);
         },
         sendToServer(content) {
-            this.websocket.send(JSON.stringify(
-                {
-                    from: this.username,
-                    content: content,
-                }
-            ));
+            let payload = {
+                id:new Date().toISOString().replace(/:/g, '-'),
+                from:this.username,
+                content:content
+            }
+
+            //log
+            axios.post(`${this.endpoint}/api/tableStorage?tableName=Akashic&partitionKey=log`, payload);
+            
+            //share
+            this.websocket.send(JSON.stringify(payload));
         },
         addMessageToView(message) {
             this.addItem(JSON.parse(message), this.chat.messages);
@@ -83,13 +107,16 @@ const app = new Vue({
         },
         log(content) {
             this.addItem(new Date().toLocaleString() + ": " + content, this.logs);
+        },
+
+        saveCharacter: function() {
+            axios.post(`${this.endpoint}api/tableStorage?tableName=Akashic&partitionKey=characters`, {
+                id: this.username,
+                ...this.character,
+                hp: JSON.stringify(this.character.hp),
+                stats: JSON.stringify(this.character.stats)
+            }).then(() => this.log("Character saved."))
+            .catch(() => this.log("Error saving character."));
         }
     }
 });
-
-function fooTest(o){
-  console.log(o);
-
-  axios.post(`${app.endpoint}api/ai/foo=${o}`,null,null)
-  .then(resp=>console.log(resp));
-}

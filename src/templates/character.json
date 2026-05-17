@@ -1,0 +1,10 @@
+{
+    "name": "Pippen",
+    "race": "Halfling",
+    "class": "Rogue",
+    "level": 5,
+    "hp": { "current": 28, "max": 34 },
+    "status": "Sword broken. Unarmed.",
+    "inventory": ["Dagger", "Thieves tools", "50gp"],
+    "notes": "Has a grudge against the bandit leader"
+}

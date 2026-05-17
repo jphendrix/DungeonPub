@@ -1,0 +1,14 @@
+ [
+   {
+      "topic": "The Fenlands",
+      "content": "A vast, fog-covered marshland stretching south of Millhaven. Local legend speaks of will-o-wisps that lure travelers off the road. The peat bogs are said to preserve the dead, and more than one traveler has reported hearing voices in the mist.",
+      "source": "Local rumor",
+      "addedSession": 1
+    },
+    {
+      "topic": "The Harvest Moon Festival",
+      "content": "An annual celebration in Millhaven marking the end of the harvest. This year the festival was cancelled — officially due to poor harvest, unofficially due to the bandit activity on Swamp Road cutting off supply caravans.",
+      "source": "Village Elder",
+      "addedSession": 2
+    }
+ ]  

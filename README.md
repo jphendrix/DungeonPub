@@ -1,35 +1,105 @@
-# Azure Web PubSub service simple chat app with Azure Static Web App service
+DungeonPub 🍺⚔️
+A real-time chat and campaign companion app for tabletop RPG sessions, built on Azure Static Web Apps and Azure Web PubSub.
+DungeonPub started as a simple real-time chat app. It wants to be something more — a living, breathing companion for D&D sessions that keeps track of the world so the players don't have to.
+---
+What It Is
+A browser-based app where a party of D&D players can chat in real time during a session. The Dungeon Master has elevated privileges and can interact with an AI Chronicler that observes the session, remembers the world, and narrates key moments to the party.
+---
+What It Wants To Be
+A real-time session companion — chat, dice rolls, and shared narrative in one place
+A living world record — characters, locations, NPCs, quests, and lore stored and maintained automatically
+A silent AI Chronicler — an omniscient narrator that speaks only when the DM summons it, feeding the party atmospheric updates and world lore without breaking immersion
+A DM command center — the DM sees more, controls more, and can shape the narrative with simple `@` commands that players never see
+Token-efficient AI — a lean context model that passes only what the AI needs, using structured world state and rolling chronicles instead of full history
+---
+Architecture
+Layer	Technology
+Frontend	HTML, Vue.js, Bootstrap
+Real-time messaging	Azure Web PubSub
+API	Azure Functions (Node.js)
+Storage	Azure Table Storage (Akashic)
+Hosting	Azure Static Web Apps
+AI	Azure AI / Anthropic API
+Akashic — The Data Store
+All game data lives in a single Azure Table Storage table called Akashic, organized by partition:
+Partition	Contents
+`worldstate`	Current session facts — location, weather, date, active threat
+`party`	Shared party metadata — gold, group inventory, morale
+`characters`	One row per player character
+`npcs`	One row per NPC
+`locations`	Known locations and points of interest
+`quests`	Active and background quests
+`chronicle`	AI-generated session summaries, one per session
+`lore`	World lore entries built up over time
+`syslog`	System events, timestamped by ISO rowKey
+---
+The Chronicler
+The Chronicler is a silent AI narrator. It observes the session and speaks only when the DM triggers it via a private `@` command in chat. Players never see the DM's input — they only see the Chronicler's response, styled distinctly from regular chat.
+DM triggers:
+```
+@ Pippen broke his sword during the fight
+@ tell us the local lore, mention that The Dark had a run-in with bandits on Swamp Road
+@ the party sets up camp for the night
+```
+The Chronicler receives the `@` message plus current world state and the last session chronicle as context. The DM previews the response before it is published to the party.
+---
+TODO
+Authentication
+[ ] Set up Azure Static Web Apps built-in auth (GitHub login)
+[ ] Assign DM role vs player role
+[ ] Protect `/api/chronicle` endpoint — DM only
+[ ] Hide `@` command routing from player view
+Data Layer
+[ ] Rename Azure table to Akashic
+[ ] Update `tableStorage` API to support `afterId` for time-based log queries
+[ ] Create individual character rows in Akashic
+[ ] Create party metadata row in Akashic
+[ ] Seed initial world state row
+[ ] Add `partitionKey` query support to GET endpoint
+The Chronicler
+[ ] Create `/api/chronicle` Azure Function
+[ ] Wire up `@` command detection in chat input
+[ ] Build DM preview pane for Chronicler responses before publishing
+[ ] Broadcast Chronicler messages via Web PubSub
+[ ] Style Chronicler messages distinctly in chat UI (parchment / italic / fantasy font)
+[ ] Store each Chronicler response as a chronicle entry in Akashic
+AI Context Model
+[ ] Finalize world state JSON schema
+[ ] Finalize chronicle JSON schema
+[ ] Write Chronicler system prompt
+[ ] Build context assembly logic — what gets sent to AI per `@` trigger
+[ ] Selective character fetching — only pull relevant character rows per `@` command
+Frontend / UI
+[ ] Display message timestamps in chat
+[ ] DM view vs player view
+[ ] Character sheet display
+[ ] Dice roller
+Housekeeping
+[ ] Add `api/index.js` to repo (empty file — required for Azure Functions v4 runtime)
+[ ] Confirm `local.settings.json` is in `.gitignore`
+[ ] Update `host.json` with `workerIndexing: false`
+[ ] Commit and deploy to Azure
+---
+Running Locally
+```bash
+# Install dependencies
+cd api
+npm install
 
-[Azure Web PubSub](https://aka.ms/awps) helps you build real-time messaging web applications using WebSockets and the publish-subscribe pattern easily. This real-time functionality allows publishing content updates between server and connected clients (for example a single page web application or mobile application). The clients do not need to poll the latest updates, or submit new HTTP requests for updates. And with [Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps/overview) you can automatically build and deploy full stack web apps to Azure from a code repository.
+# Start the API
+func start
 
-Use this repo template you can easily create and deploy a real-time message chat app in minutes.
-
-## Steps
-
-See [HERE](https://learn.microsoft.com/azure/azure-web-pubsub/tutorial-serverless-static-web-app).
-
-## Support
-
-If you meet any problem working on Azure Web PubSub or this template related, please go to [azure-webpubsub](https://github.com/Azure/azure-webpubsub/issues/new/choose) to file an issue and look for further support.
-
-## Contributing
-
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
-
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
-## Trademarks
-
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+# Open src/index.html in a browser or use Live Server
+```
+Requires `api/local.settings.json` (not committed — see a team member for values):
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "<connection string>",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "FUNCTIONS_V2_COMPATIBILITY_MODE": "true",
+    "StorageConnString": "<connection string>"
+  }
+}
+```

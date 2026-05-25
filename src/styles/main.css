@@ -32,6 +32,7 @@ main {
     flex-grow: 1;
     min-height: 0;      /* important */
     overflow: auto;
+    height: 80vh;      /* fills viewport height */
 }
 
 aside {
@@ -40,7 +41,7 @@ aside {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    height: 100vh;      /* fills viewport height */
+    height: 90vh;      /* fills viewport height */
     overflow: hidden;   /* clip unless .tab-content scrolls */
     /* Bootstrap .col-4 sets width */
 }

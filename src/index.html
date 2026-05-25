@@ -16,6 +16,17 @@
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 
+<!--
+body (overflow hidden)
+└── #app (100vh overflow hidden)
+    └── row (overflow hidden)
+        ├── main (overflow hidden)
+        │   ├── chat (overflow auto)
+        │   └── input
+        └── aside (overflow hidden)
+            ├── tabs
+            └── tab-content (overflow auto)
+-->
 <body>
     <div id="app" class="container-fluid h-100 d-flex flex-column flex-nowrap p-0">
         <div id="login" v-if="!loggedin" class="login">
@@ -50,10 +61,10 @@
                 </div>
             </nav>
 
-            <div class="row flex-grow-1 overflow-hidden">
+            <div class="row flex-grow-1 overflow-hidden no-gutters">
 
                 <!-- LEFT: Chat Panel -->
-                <main role="main" class="col-8 d-flex flex-column flex-nowrap p-md-4 p-2">
+                <main role="main" class="col-8 d-flex flex-column flex-nowrap p-md-4 p-2 overflow-hidden">
                     <div id="chat" class="bg-light flex-grow-1 overflow-auto" style="min-height:0">
                         <div class="m-2" v-for="message in chat.messages" v-bind:key="message.id">
                             <div class="col-md row" style="display: inline-block;">
@@ -90,7 +101,7 @@
                 </main>
 
                 <!-- RIGHT: Side Panel -->
-                <aside class="col-4 d-flex flex-column p-3 border-left bg-dark text-light" style="min-height:0">
+                <aside class="col-4 d-flex flex-column p-3 border-left bg-dark text-light overflow-hidden" style="min-height:0">
 
                     <!-- Tabs nav — fixed at top -->
                     <ul class="nav nav-tabs flex-shrink-0">
@@ -110,7 +121,7 @@
                     <div class="tab-content flex-grow-1 overflow-auto" style="min-height:0">
 
                         <!-- Character Tab -->
-                        <div class="tab-pane container active" id="character">
+                        <div class="tab-pane active p-2" id="character">
                             <h5 class="border-bottom pb-2 pt-2">⚔️ Character Sheet</h5>
                             <div class="mb-3">
                                 <div class="form-group mb-1">
@@ -190,7 +201,7 @@
                         </div>
 
                         <!-- Campaign Tab -->
-                        <div class="tab-pane container fade" id="campaign">
+                        <div class="tab-pane fade p-2" id="campaign">
                             <h5 class="border-bottom pb-2 pt-2">Campaign</h5>
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Campaign Name</label>

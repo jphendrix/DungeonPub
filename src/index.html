@@ -38,7 +38,7 @@
         <template v-if="loggedin">
             <nav class="navbar navbar-dark bg-dark flex-md-nowrap p-0 shadow">
                 <div class="m-3">
-                    <span class="text-light">Welcome <a href="#"><strong>{{username}}</strong></a></span>
+                    <span class="text-light"><a href="#"><strong>{{username}}</strong></a></span>
                     <template v-if="connected">
                         <img style="width: 20px; height: 20px;"
                             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxwYXRoIGQ9Ik01MSA0MTQgODggNDE0IDg4IDQ1MSA1MSA0NTFaIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIvPjwvY2xpcFBhdGg+PGltYWdlIHdpZHRoPSIzNyIgaGVpZ2h0PSIzOSIgeGxpbms6aHJlZj0iZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFDVUFBQUFuQ0FNQUFBQy9pSEU2QUFBQUFYTlNSMElBcnM0YzZRQUFBQVJuUVUxQkFBQ3hqd3Y4WVFVQUFBRjlVRXhVUlFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFIOFI1ZThBQUFCL2RGSk9Vd0FCQWdNRUJRWUhDQWtLQ3cwT0R4RVNGQlVXR0JrYUd4d2VIeUFoSWlNa0pTY29LU3NzTGk4d01USXpORFUyTnprNk96MCtQMEJCUWtWR1IwaEpTa3RNVFU1UFVGRlRWVlpZV1ZwYlhsOWdaR1ZtYUdscmJYQnhjbk4wZFhaM2VIbCtmNENCaElXSGlJbUtpNHlOajVDUmtwU1dsNWlabXB1Y25aNmZvS0VGZllBNEFBQUFDWEJJV1hNQUFBN0RBQUFPd3dISGI2aGtBQUFDTVVsRVFWUTRUN1dVL1YvU1VCVEd1ZXhGTnNaZ1VUSWNWdlFpb2ROUUt5c0lyY3ppUmV3RkpXRllFbElJZ1FwRDIxaC9lM2Q0Snh1QjhrTTlQOTU5UDgvWlBmYzV4L2JmQlBwQ0ozOExBRHVHNHdSQjREaG1IOEZCQmljZE5PTnl1UmluZzhTSGN0Q0hwRm51T2o4bFRQRTNPSlltb1IvNmRpRm81R0N2K1lNaE1iSVltUThGL1Y2V2duYm9LeEt3RTdTSHZ6Ty9zcnFSU0NZMlZwOHUzT1U5TklGWk1BZzV1Y0NESit1YjJaeFVsSExaekp1VmNJQnpFbVkzQUhDS0M0alI5UGFYOHZkYXZmYWovSFU3SFJPbk9kcGNGR0FPdHpEM0lyTmJyaDIzWkZsdUhkZkx1NW40bk9CMjlHc0NPOGxNemp6YkxGU2E3VE5GVlZYbHJOMnNGRExSa0k4aEw4d0FSbkczbHhPNWc2T08wdFYwZFpYTzBjSG41T01nUnhsbUFCQ01MN3oyYWI4aEs1cjJXNWVtS1hLamxIMDV5ek1FYWk3QUp0dzNsMU9GYWdzNjlTQ0lkWlZXVlVvOXV1V1pRR2F3b1BkZTlQMSs4MVExSUlpcHA4M1NoOWg5cjFFUzRNN0o4T3VkeXNtdlBnUXg1YVN5c3o3cmMrSUd4ZmdYM3VhcmJjVkNxZTNEL0x1SGZzYWdDSmNRU1JicnNxbWdUc24xWW5KUmNCRTlDbDZSRlpaU2UvWE9BTlg1dVpkYUVsaDB5Ykc4eHYydjhlNDRzbDhmemYwNjc3MDAyUHRES1czdVBYckhrdVVkTzQxdjJWZW1keHlSaVlvMUU3MTgrV2FlWjZ6NWtnYnlCYzMwck1hM3pGbk5iOFZGUzFiUGN6OHR4aTdQUFpxaDhPVXpwTmUwek9QYTBIblUzWERxeXRuV3NjRTlNUVRTcjJEZE9kam8zWFRsL3RLRjlxQXVkUEt2WmJQOUFlNzA0REM0RXNzNkFBQUFBRWxGVGtTdVFtQ0MiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIGlkPSJpbWcxIj48L2ltYWdlPjxjbGlwUGF0aCBpZD0iY2xpcDIiPjxwYXRoIGQ9Ik0wIDAgMzcgMCAzNyAzOSAwIDM5WiIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48L2NsaXBQYXRoPjxsaW5lYXJHcmFkaWVudCB4MT0iNjkuNSIgeTE9IjQxOCIgeDI9IjY5LjUiIHkyPSI0NDMiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiBzcHJlYWRNZXRob2Q9InJlZmxlY3QiIGlkPSJmaWxsMyI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjNkFBQTU4Ii8+PHN0b3Agb2Zmc2V0PSIwLjUiIHN0b3AtY29sb3I9IiM1MkEzMzQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM0NTk1MjgiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48ZyBjbGlwLXBhdGg9InVybCgjY2xpcDApIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTEgLTQxNCkiPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMikiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxIDQxMykiPjx1c2Ugd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgeGxpbms6aHJlZj0iI2ltZzEiPjwvdXNlPjwvZz48cGF0aCBkPSJNNTggNDMwLjVDNTggNDIzLjU5NiA2My4xNDg3IDQxOCA2OS41IDQxOCA3NS44NTEzIDQxOCA4MSA0MjMuNTk2IDgxIDQzMC41IDgxIDQzNy40MDQgNzUuODUxMyA0NDMgNjkuNSA0NDMgNjMuMTQ4NyA0NDMgNTggNDM3LjQwNCA1OCA0MzAuNVoiIGZpbGw9InVybCgjZmlsbDMpIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz48L2c+PC9zdmc+"></img>
@@ -50,11 +50,11 @@
                 </div>
             </nav>
 
-            <div class="row flex-grow-1 overflow-hidden h-75">
+            <div class="row flex-grow-1 overflow-hidden no-gutters">
 
                 <!-- LEFT: Chat Panel -->
-                <main role="main" class="col-8 d-flex flex-column flex-nowrap p-md-4 p-2 overflow-auto">
-                    <div id="chat" style="flex:1; overflow-y:auto;" class="bg-light">
+                <main role="main" class="col-8 d-flex flex-column flex-nowrap p-md-4 p-2 overflow-hidden" style="min-height:0;">
+                    <div id="chat" class="bg-light flex-grow-1 overflow-auto" style="min-height:0;">
                         <div class="m-2" v-for="message in chat.messages" v-bind:key="message.id">
                             <div class="col-md row" style="display: inline-block;">
                                 <div v-if="message.type =='error' || message.from == '[System]'"
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="flex-shrink-0">
                         <br />
                         <form v-on:submit.prevent="sendNewMessage()">
                             <div class="input-group">
@@ -89,93 +89,209 @@
                     </div>
                 </main>
 
-                <!-- RIGHT: Character Sheet Panel -->
-                <aside class="col-4 d-flex flex-column p-3 overflow-auto overflow-auto border-left bg-dark text-light">
-                    <h5 class="border-bottom pb-2">⚔️ Character Sheet</h5>
+                <!-- RIGHT: Side Panel -->
+                <aside class="col-4 d-flex flex-column p-3 border-left bg-dark text-light overflow-hidden" style="min-height:0">
 
-                    <!-- Basic Info -->
-                    <div class="mb-3">
-                        <div class="form-group mb-1">
-                            <label class="small text-muted mb-0">Name</label>
-                            <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                v-model="character.name" placeholder="Character name">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col mb-1">
-                                <label class="small text-muted mb-0">Class</label>
+                    <!-- Tabs nav — fixed at top -->
+                    <ul class="nav nav-tabs flex-shrink-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#character">{{character.name ||
+                                'Character'}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#campaign">Campaign</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab content — scrollable -->
+                    <div class="tab-content flex-grow-1 overflow-auto" style="min-height:0">
+
+                        <!-- Character Tab -->
+                        <div class="tab-pane active h-100 overflow-auto p-2" id="character">
+                            <h5 class="border-bottom pb-2 pt-2">⚔️ Character Sheet</h5>
+                            <div class="mb-3">
+                                <div class="form-group mb-1">
+                                    <label class="small text-muted mb-0">Name</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="character.name" placeholder="Character name">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col mb-1">
+                                        <label class="small text-muted mb-0">Class</label>
+                                        <input type="text"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model="character.class" placeholder="Class">
+                                    </div>
+                                    <div class="form-group col mb-1">
+                                        <label class="small text-muted mb-0">Race</label>
+                                        <input type="text"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model="character.race" placeholder="Race">
+                                    </div>
+                                    <div class="form-group col mb-1">
+                                        <label class="small text-muted mb-0">Level</label>
+                                        <input type="number"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model.number="character.level" min="1" max="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Hit Points</label>
+                                <div class="form-row align-items-center">
+                                    <div class="col">
+                                        <input type="number"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model.number="character.hp.current" placeholder="Current">
+                                    </div>
+                                    <div class="col-auto">/</div>
+                                    <div class="col">
+                                        <input type="number"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model.number="character.hp.max" placeholder="Max">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Ability Scores</label>
+                                <div class="form-row">
+                                    <div class="col-4 mb-1" v-for="(val, stat) in character.stats" :key="stat">
+                                        <label class="small text-muted mb-0 text-uppercase">{{stat}}</label>
+                                        <input type="number"
+                                            class="form-control form-control-sm bg-secondary text-light border-0"
+                                            v-model.number="character.stats[stat]" min="1" max="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Status</label>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="character.class" placeholder="Class">
+                                    v-model="character.status" placeholder="e.g. Poisoned, Unconscious">
                             </div>
-                            <div class="form-group col mb-1">
-                                <label class="small text-muted mb-0">Race</label>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Inventory</label>
+                                <textarea class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="inventoryCsv"
+                                    placeholder="List of items the character is carrying"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Notes</label>
+                                <textarea class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="character.notes"
+                                    placeholder="Additional information about the character"></textarea>
+                            </div>
+                            <button class="btn btn-sm btn-outline-light mb-3" @click="saveCharacter">
+                                Save Character
+                            </button>
+                        </div>
+
+                        <!-- Campaign Tab -->
+                        <div class="tab-pane fade h-100 overflow-auto p-2" id="campaign">
+                            <h5 class="border-bottom pb-2 pt-2">Campaign</h5>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Campaign Name</label>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model="character.race" placeholder="Race">
+                                    v-model="campaign.campaignName" placeholder="Name of the campaign">
                             </div>
-                            <div class="form-group col mb-1">
-                                <label class="small text-muted mb-0">Level</label>
-                                <input type="number"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model.number="character.level" min="1" max="20">
+                            <div class="row">
+                                <div class="col-5 mb-3">
+                                    <label class="small text-muted mb-1">In-Game Date</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.currentDate.inGame" placeholder="In-game date">
+                                </div>
+                                <div class="col-5 mb-3">
+                                    <label class="small text-muted mb-1">Time of Day</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.timeOfDay" placeholder="Time of day">
+                                </div>
+                                <div class="col-2 mb-3">
+                                    <label class="small text-muted mb-1">Session</label>
+                                    <input type="number"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model.number="campaign.sessionNumber" placeholder="Session number">
+                                </div>
                             </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Weather</label>
+                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="campaign.weather" placeholder="Current weather">
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Party Members</label>
+                                <textarea class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="partyCsv" placeholder="Comma-separated party members"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Group Formation</label>
+                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="campaign.party.formation" placeholder="Party formation">
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Group Morale</label>
+                                <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="campaign.party.morale" placeholder="Party morale">
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Group Inventory</label>
+                                <textarea class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="partyInventoryCsv"
+                                    placeholder="Comma-separated inventory items"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Current Objective</label>
+                                <textarea class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="campaign.party.currentObjective"
+                                    placeholder="Current objective"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 mb-3">
+                                    <label class="small text-muted mb-1">Current Location</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.currentLocation.name" placeholder="Location name">
+                                </div>
+                                <div class="col-4 mb-3">
+                                    <label class="small text-muted mb-1">Location Type</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.currentLocation.type" placeholder="Location type">
+                                </div>
+                                <div class="col-4 mb-3">
+                                    <label class="small text-muted mb-1">Region</label>
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
+                                        v-model="campaign.currentLocation.region" placeholder="Region">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Location Description</label>
+                                <textarea class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="campaign.currentLocation.description"
+                                    placeholder="Describe the current location"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted mb-1">Active Threat</label>
+                                <textarea class="form-control form-control-sm bg-secondary text-light border-0"
+                                    v-model="campaign.activeThreat" placeholder="Current threats or dangers"></textarea>
+                            </div>
+                            <button class="btn btn-sm btn-outline-light mb-3" @click="saveCampaign">
+                                Save Campaign
+                            </button>
                         </div>
-                    </div>
 
-                    <!-- HP -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Hit Points</label>
-                        <div class="form-row align-items-center">
-                            <div class="col">
-                                <input type="number"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model.number="character.hp.current" placeholder="Current">
-                            </div>
-                            <div class="col-auto">/</div>
-                            <div class="col">
-                                <input type="number"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model.number="character.hp.max" placeholder="Max">
-                            </div>
+                        <!-- Menu 2 Tab -->
+                        <div class="tab-pane container fade" id="menu2">
+                            <h5 class="border-bottom pb-2 pt-2">Menu 2</h5>
+                            <p>Coming soon.</p>
                         </div>
-                    </div>
 
-                    <!-- Ability Scores -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Ability Scores</label>
-                        <div class="form-row">
-                            <div class="col-4 mb-1" v-for="(val, stat) in character.stats" :key="stat">
-                                <label class="small text-muted mb-0 text-uppercase">{{stat}}</label>
-                                <input type="number"
-                                    class="form-control form-control-sm bg-secondary text-light border-0"
-                                    v-model.number="character.stats[stat]" min="1" max="20">
-                            </div>
-                        </div>
                     </div>
-
-                    <!-- Status -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Status</label>
-                        <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
-                            v-model="character.status" placeholder="e.g. Poisoned, Unconscious">
-                    </div>
-
-                    <!-- Inventory -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Inventory</label>
-                        <textarea class="form-control form-control-sm bg-secondary text-light border-0"
-                            v-model="inventoryCsv" placeholder="List of items the character is carrying"></textarea>
-                    </div>
-
-                    <!-- Notes -->
-                    <div class="mb-3">
-                        <label class="small text-muted mb-1">Notes</label>
-                        <textarea class="form-control form-control-sm bg-secondary text-light border-0"
-                            v-model="character.notes" placeholder="Additional information about the character"></textarea>
-                    </div>
-
-                    <!-- Save Button -->
-                    <button class="btn btn-sm btn-outline-light mt-auto" @click="saveCharacter">
-                        Save Character
-                    </button>
                 </aside>
             </div>
         </template>

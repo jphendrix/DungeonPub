@@ -9,17 +9,8 @@ const data = {
     connected: false,
     counter: 0,
 
-    character: {
-        name: '',
-        race: '',
-        class: '',
-        level: 1,
-        hp: { current: 0, max: 0 },
-        stats: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 },
-        status: '',
-        inventory: ["Dagger", "Thieves tools", "50gp"],
-        notes: "Has a grudge against the bandit leader"
-    }
+    character: Character.default(),
+    campaign: Campaign.default()
 };
 
 
@@ -38,11 +29,37 @@ const app = new Vue({
                     .map(x => x.trim())
                     .filter(x => x.length > 0);
             }
+        },
+        partyCsv:{
+            get() {
+                return (this.campaign.party.members||[]).join(", ");
+            },
+
+            set(value) {
+                this.campaign.party.members = value
+                    .split(",")
+                    .map(x => x.trim())
+                    .filter(x => x.length > 0);         
+            }
+        },
+        partyInventoryCsv: {
+            get() {
+                return (this.campaign.party.groupInventory||[]).join(", ");
+            },
+
+            set(value) {
+                this.campaign.party.groupInventory = value
+                    .split(",")
+                    .map(x => x.trim())
+                    .filter(x => x.length > 0);         
+            }
         }
+    },
+    mounted() {
+        console.log("App mounted.");
     },
     created() {
         console.log("App created, loading character...");
-        this.character.data = Character.default();
     },    
     methods: {
         login: function () {
@@ -51,7 +68,15 @@ const app = new Vue({
 
                 Character.load(this.endpoint, this.username)
                     .then(c => this.character = c)
-                    .catch(err => this.log("Error loading character: " + err));
+                    .catch(err => {
+                        this.log("Error loading character: " + err); 
+                    });
+
+                Campaign.load(this.endpoint)
+                    .then(c => this.campaign = c)
+                    .catch(err => {
+                        this.log("Error loading campaign: " + err);
+                    });
 
                 this.log("Connecting...");
 
@@ -135,6 +160,12 @@ const app = new Vue({
             Character.save(this.endpoint, this.username, this.character)
                 .then(() => this.log("Character saved."))
                 .catch(() => this.log("Error saving character."));
+        },
+        saveCampaign() {
+            console.log("Saving campaign...");
+            Campaign.save(this.endpoint, this.campaign)
+                .then(() => this.log("Campaign saved."))
+                .catch(() => this.log("Error saving campaign."));
         }
     }
 });

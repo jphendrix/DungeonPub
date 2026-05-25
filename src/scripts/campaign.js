@@ -1,7 +1,3 @@
-function foo(){
-    console.log('foo');
-}
-
 const Character = {
     default() {
         return {
@@ -33,8 +29,6 @@ const Character = {
         } else {
             return Promise.resolve(Character.default());
         }
-
-        foo();
     },
 
     //TODO: after auth, only allow saving to this user's record on the server
@@ -49,15 +43,14 @@ const Campaign = {
     default(){
         return {
             campaignName: "The Shadow of the Swamp",
+            sessionNumber: 3,
             party:{
                 members: ["Pippen", "Gandalf"],
                 formation: "Pippen scouts ahead",
-                groupInventory: ["Rope 50ft", "Lantern", "Camp supplies"],
-                partyGold: 120,
+                groupInventory: ["Rope 50ft", "Lantern", "Camp supplies", "120gp"],
                 morale: "Shaken after Pippen's sword broke",
                 currentObjective: "Find a blacksmith before heading south"
                 },
-            sessionNumber: 3,
             currentDate: {
                 realWorld: (new Date()).toISOString(),
                 inGame: "The 14th day of the Harvest Moon, Year 412"

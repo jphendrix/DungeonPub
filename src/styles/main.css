@@ -1,50 +1,72 @@
-html,
-body,
-main {
-    height: 100%
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-size: 0.875rem;
 }
 
-body {
-    font-size: .875rem;
+#app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.row {
+    flex-grow: 1;
+    display: flex;
+    min-width: 0;       /* important to allow flex children to shrink */
+    overflow: hidden;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;      /* critical for scrollable child */
+    overflow: hidden;
+    /* Bootstrap .col-8 sets width */
 }
 
 #chat {
+    flex-grow: 1;
+    min-height: 0;      /* important */
     overflow: auto;
+    height: 80vh;      /* fills viewport height */
 }
 
-/* Login */
-.login {
+aside {
+    flex-shrink: 0;
+    flex-grow: 0;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    min-height: 100%;
-    padding: 20px;
+    min-height: 0;
+    height: 90vh;      /* fills viewport height */
+    overflow: hidden;   /* clip unless .tab-content scrolls */
+    /* Bootstrap .col-4 sets width */
 }
 
-/* Navbar */
-.navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: 1rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+/* This is the scrolling container for tabs */
+.tab-content {
+    flex-grow: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: inherit;
 }
 
-.navbar .form-control {
-    padding: .75rem 1rem;
-    border-width: 0;
-    border-radius: 0;
+/* Ensure tab pane fills height to allow inner scrolling */
+.tab-pane {
+    min-height: 0;
 }
 
-.form-control-dark {
-    color: #fff;
-    background-color: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
+/* Optional - prevent margin/padding collapse issues inside tab pane */
+.tab-pane > * {
+    /* make sure contents flow properly with scrolling */
 }
 
-.form-control-dark:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(255, 25zd5, 255, .25);
+/* Optional: to avoid floating issues, clear floats inside chat messages */
+#chat .m-2::after {
+    content: "";
+    display: table;
+    clear: both;
 }

@@ -160,6 +160,12 @@ const app = new Vue({
             Character.save(this.endpoint, this.username, this.character)
                 .then(() => this.log("Character saved."))
                 .catch(() => this.log("Error saving character."));
+        },
+        saveCampaign() {
+            console.log("Saving campaign...");
+            Campaign.save(this.endpoint, this.campaign)
+                .then(() => this.log("Campaign saved."))
+                .catch(() => this.log("Error saving campaign."));
         }
     }
 });

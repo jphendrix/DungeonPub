@@ -64,8 +64,8 @@ body (overflow hidden)
             <div class="row flex-grow-1 overflow-hidden no-gutters">
 
                 <!-- LEFT: Chat Panel -->
-                <main role="main" class="col-8 d-flex flex-column flex-nowrap p-md-4 p-2 overflow-hidden">
-                    <div id="chat" class="bg-light flex-grow-1 overflow-auto" style="min-height:0">
+                <main role="main" class="col-8 d-flex flex-column flex-nowrap p-md-4 p-2 overflow-hidden" style="min-height:0;">
+                    <div id="chat" class="bg-light flex-grow-1 overflow-auto" style="min-height:0;">
                         <div class="m-2" v-for="message in chat.messages" v-bind:key="message.id">
                             <div class="col-md row" style="display: inline-block;">
                                 <div v-if="message.type =='error' || message.from == '[System]'"
@@ -87,7 +87,7 @@ body (overflow hidden)
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="flex-shrink-0">
                         <br />
                         <form v-on:submit.prevent="sendNewMessage()">
                             <div class="input-group">
@@ -121,7 +121,7 @@ body (overflow hidden)
                     <div class="tab-content flex-grow-1 overflow-auto" style="min-height:0">
 
                         <!-- Character Tab -->
-                        <div class="tab-pane active p-2" id="character">
+                        <div class="tab-pane active h-100 overflow-auto p-2" id="character">
                             <h5 class="border-bottom pb-2 pt-2">⚔️ Character Sheet</h5>
                             <div class="mb-3">
                                 <div class="form-group mb-1">
@@ -201,7 +201,7 @@ body (overflow hidden)
                         </div>
 
                         <!-- Campaign Tab -->
-                        <div class="tab-pane fade p-2" id="campaign">
+                        <div class="tab-pane fade h-100 overflow-auto p-2" id="campaign">
                             <h5 class="border-bottom pb-2 pt-2">Campaign</h5>
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Campaign Name</label>

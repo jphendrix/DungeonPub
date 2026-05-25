@@ -51,6 +51,7 @@ aside {
     flex-grow: 1;
     min-height: 0;
     overflow: auto;
+    padding: inherit;
 }
 
 /* Ensure tab pane fills height to allow inner scrolling */

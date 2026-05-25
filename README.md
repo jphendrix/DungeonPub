@@ -73,31 +73,3 @@ The Chronicler receives the `@` message plus current world state and the last se
   * DM view vs player view
   * Character sheet display
   * Dice roller
-* Housekeeping
-  * Add `api/index.js` to repo (empty file — required for Azure Functions v4 runtime)
-  * Update `host.json` with `workerIndexing: false`
-  * Commit and deploy to Azure
-
-Running Locally
-```bash
-# Install dependencies
-cd api
-npm install
-
-# Start the API
-func start
-
-# Open src/index.html in a browser or use Live Server
-```
-Requires `api/local.settings.json` (not committed — see a team member for values):
-```json
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "<connection string>",
-    "FUNCTIONS_WORKER_RUNTIME": "node",
-    "FUNCTIONS_V2_COMPATIBILITY_MODE": "true",
-    "StorageConnString": "<connection string>"
-  }
-}
-```

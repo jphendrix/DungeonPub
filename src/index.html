@@ -53,8 +53,8 @@
             <div class="row flex-grow-1 overflow-hidden">
 
                 <!-- LEFT: Chat Panel -->
-                <main role="main" class="col-8 d-flex flex-column flex-nowrap p-md-4 p-2 overflow-auto">
-                    <div id="chat" style="flex:1; overflow-y:auto;" class="bg-light">
+                <main role="main" class="col-8 d-flex flex-column flex-nowrap p-md-4 p-2">
+                    <div id="chat" class="bg-light flex-grow-1 overflow-auto" style="min-height:0">
                         <div class="m-2" v-for="message in chat.messages" v-bind:key="message.id">
                             <div class="col-md row" style="display: inline-block;">
                                 <div v-if="message.type =='error' || message.from == '[System]'"
@@ -89,11 +89,14 @@
                     </div>
                 </main>
 
-                <!-- RIGHT: Character Sheet Panel -->
-                <aside class="col-4 d-flex flex-column p-3 overflow-auto overflow-auto border-left bg-dark text-light max-height-100 overflow-scroll">
-                    <ul class="nav nav-tabs">
+                <!-- RIGHT: Side Panel -->
+                <aside class="col-4 d-flex flex-column p-3 border-left bg-dark text-light" style="min-height:0">
+
+                    <!-- Tabs nav — fixed at top -->
+                    <ul class="nav nav-tabs flex-shrink-0">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#character">{{character.name}}</a>
+                            <a class="nav-link active" data-toggle="tab" href="#character">{{character.name ||
+                                'Character'}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#campaign">Campaign</a>
@@ -103,11 +106,12 @@
                         </li>
                     </ul>
 
-                    <!-- Tab panes -->
-                    <div class="tab-content">
+                    <!-- Tab content — scrollable -->
+                    <div class="tab-content flex-grow-1 overflow-auto" style="min-height:0">
+
+                        <!-- Character Tab -->
                         <div class="tab-pane container active" id="character">
-                            <h5 class="border-bottom pb-2">⚔️ Character Sheet</h5>
-                            <!-- Basic Info -->
+                            <h5 class="border-bottom pb-2 pt-2">⚔️ Character Sheet</h5>
                             <div class="mb-3">
                                 <div class="form-group mb-1">
                                     <label class="small text-muted mb-0">Name</label>
@@ -136,8 +140,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- HP -->
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Hit Points</label>
                                 <div class="form-row align-items-center">
@@ -154,8 +156,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Ability Scores -->
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Ability Scores</label>
                                 <div class="form-row">
@@ -167,106 +167,88 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Status -->
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Status</label>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="character.status" placeholder="e.g. Poisoned, Unconscious">
                             </div>
-
-                            <!-- Inventory -->
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Inventory</label>
                                 <textarea class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="inventoryCsv"
                                     placeholder="List of items the character is carrying"></textarea>
                             </div>
-
-                            <!-- Notes -->
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Notes</label>
                                 <textarea class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="character.notes"
                                     placeholder="Additional information about the character"></textarea>
                             </div>
-
-                            <!-- Save Button -->
-                            <button class="btn btn-sm btn-outline-light mt-auto" @click="saveCharacter">
+                            <button class="btn btn-sm btn-outline-light mb-3" @click="saveCharacter">
                                 Save Character
                             </button>
                         </div>
-                        <div class="tab-pane container fade" id="campaign">
-                            <h5 class="border-bottom pb-2">Campaign</h5>
 
+                        <!-- Campaign Tab -->
+                        <div class="tab-pane container fade" id="campaign">
+                            <h5 class="border-bottom pb-2 pt-2">Campaign</h5>
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Campaign Name</label>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="campaign.campaignName" placeholder="Name of the campaign">
                             </div>
-
                             <div class="row">
                                 <div class="col-5 mb-3">
                                     <label class="small text-muted mb-1">In-Game Date</label>
                                     <input type="text"
                                         class="form-control form-control-sm bg-secondary text-light border-0"
-                                        v-model="campaign.currentDate.inGame"
-                                        placeholder="In-game date">
+                                        v-model="campaign.currentDate.inGame" placeholder="In-game date">
                                 </div>
-
                                 <div class="col-5 mb-3">
                                     <label class="small text-muted mb-1">Time of Day</label>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
                                         v-model="campaign.timeOfDay" placeholder="Time of day">
                                 </div>
-
                                 <div class="col-2 mb-3">
                                     <label class="small text-muted mb-1">Session</label>
                                     <input type="number"
                                         class="form-control form-control-sm bg-secondary text-light border-0"
-                                        v-model.number="campaign.sessionNumber"
-                                        placeholder="Session number">
+                                        v-model.number="campaign.sessionNumber" placeholder="Session number">
                                 </div>
                             </div>
-
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Weather</label>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="campaign.weather" placeholder="Current weather">
                             </div>
-
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Party Members</label>
                                 <textarea class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="partyCsv" placeholder="Comma-separated party members"></textarea>
                             </div>
-
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Group Formation</label>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="campaign.party.formation" placeholder="Party formation">
                             </div>
-
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Group Morale</label>
                                 <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="campaign.party.morale" placeholder="Party morale">
                             </div>
-
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Group Inventory</label>
                                 <textarea class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="partyInventoryCsv"
                                     placeholder="Comma-separated inventory items"></textarea>
                             </div>
-
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Current Objective</label>
                                 <textarea class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="campaign.party.currentObjective"
                                     placeholder="Current objective"></textarea>
                             </div>
-
                             <div class="row">
                                 <div class="col-4 mb-3">
                                     <label class="small text-muted mb-1">Current Location</label>
@@ -274,13 +256,12 @@
                                         class="form-control form-control-sm bg-secondary text-light border-0"
                                         v-model="campaign.currentLocation.name" placeholder="Location name">
                                 </div>
-
                                 <div class="col-4 mb-3">
                                     <label class="small text-muted mb-1">Location Type</label>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-light border-0"
+                                    <input type="text"
+                                        class="form-control form-control-sm bg-secondary text-light border-0"
                                         v-model="campaign.currentLocation.type" placeholder="Location type">
                                 </div>
-
                                 <div class="col-4 mb-3">
                                     <label class="small text-muted mb-1">Region</label>
                                     <input type="text"
@@ -288,23 +269,31 @@
                                         v-model="campaign.currentLocation.region" placeholder="Region">
                                 </div>
                             </div>
-
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Location Description</label>
                                 <textarea class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="campaign.currentLocation.description"
                                     placeholder="Describe the current location"></textarea>
                             </div>
-
                             <div class="mb-3">
                                 <label class="small text-muted mb-1">Active Threat</label>
                                 <textarea class="form-control form-control-sm bg-secondary text-light border-0"
                                     v-model="campaign.activeThreat" placeholder="Current threats or dangers"></textarea>
                             </div>
+                            <button class="btn btn-sm btn-outline-light mb-3" @click="saveCampaign">
+                                Save Campaign
+                            </button>
                         </div>
-                        <div class="tab-pane container fade" id="menu2">2</div>
+
+                        <!-- Menu 2 Tab -->
+                        <div class="tab-pane container fade" id="menu2">
+                            <h5 class="border-bottom pb-2 pt-2">Menu 2</h5>
+                            <p>Coming soon.</p>
+                        </div>
+
                     </div>
                 </aside>
+
             </div>
         </template>
     </div>

@@ -1,12 +1,8 @@
-html,
-body {
+html, body {
     height: 100%;
-    overflow: hidden;
-}
-
-body {
-    font-size: .875rem;
     margin: 0;
+    overflow: hidden;
+    font-size: 0.875rem;
 }
 
 #app {
@@ -17,43 +13,58 @@ body {
 }
 
 .row {
-    min-width: 0;
-    /* full height */
     flex-grow: 1;
     display: flex;
+    min-width: 0;       /* important to allow flex children to shrink */
     overflow: hidden;
 }
 
 main {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    min-height: 0; /* important for flexbox children to scroll */
+    min-height: 0;      /* critical for scrollable child */
     overflow: hidden;
+    /* Bootstrap .col-8 sets width */
 }
 
 #chat {
-    overflow: auto;
     flex-grow: 1;
-    min-height: 0; /* ensure it can shrink and scroll */
+    min-height: 0;      /* important */
+    overflow: auto;
 }
 
 aside {
+    flex-shrink: 0;
+    flex-grow: 0;
     display: flex;
     flex-direction: column;
-    flex-grow: 0;
-    height: 100%;
     min-height: 0;
-    overflow: visible; /* or auto if preferred */
+    height: 100vh;      /* fills viewport height */
+    overflow: hidden;   /* clip unless .tab-content scrolls */
+    /* Bootstrap .col-4 sets width */
 }
 
+/* This is the scrolling container for tabs */
 .tab-content {
     flex-grow: 1;
-    overflow: auto; /* enable scrolling inside tabs */
-    min-height: 0; /* important for flexbox scrolling */
+    min-height: 0;
+    overflow: auto;
 }
 
+/* Ensure tab pane fills height to allow inner scrolling */
 .tab-pane {
     min-height: 0;
 }
 
+/* Optional - prevent margin/padding collapse issues inside tab pane */
+.tab-pane > * {
+    /* make sure contents flow properly with scrolling */
+}
+
+/* Optional: to avoid floating issues, clear floats inside chat messages */
+#chat .m-2::after {
+    content: "";
+    display: table;
+    clear: both;
+}

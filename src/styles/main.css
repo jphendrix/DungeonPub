@@ -27,10 +27,14 @@ aside,
 }
 
 #chat {
-    overflow: auto;
+    overflow: auto; /* chat area is scrollable */
 }
 
 .tab-content,
 .tab-pane {
-    overflow: hidden;
+    overflow: auto; /* allow scrolling inside tab content and panes */
+}
+
+aside {
+    overflow: auto; /* allow scrolling in side panel */
 }
